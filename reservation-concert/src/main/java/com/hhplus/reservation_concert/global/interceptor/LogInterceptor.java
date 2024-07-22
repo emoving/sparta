@@ -28,6 +28,6 @@ public class LogInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         String logId = request.getAttribute(LOG_ID).toString();
 
-        log.info("RESPONSE [{}] {}", logId, requestURI);
+        log.info("RESPONSE [{}] {}", logId, requestURI); 
     }
 }

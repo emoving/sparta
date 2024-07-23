@@ -1,7 +1,7 @@
 package com.hhplus.reservation_concert.domain.token;
 
-import com.hhplus.reservation_concert.global.error.ErrorCode;
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
+import com.hhplus.reservation_concert.global.exception.CustomException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

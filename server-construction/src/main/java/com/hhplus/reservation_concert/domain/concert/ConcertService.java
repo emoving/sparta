@@ -2,8 +2,8 @@ package com.hhplus.reservation_concert.domain.concert;
 
 import com.hhplus.reservation_concert.domain.concert.performance.Performance;
 import com.hhplus.reservation_concert.domain.concert.seat.Seat;
-import com.hhplus.reservation_concert.global.error.ErrorCode;
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
+import com.hhplus.reservation_concert.global.exception.CustomException;
 import com.hhplus.reservation_concert.infrastructure.concert.ConcertRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.concert.PerformanceRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.concert.SeatRepositoryImpl;

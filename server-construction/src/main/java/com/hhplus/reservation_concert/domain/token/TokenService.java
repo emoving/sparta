@@ -1,8 +1,8 @@
 package com.hhplus.reservation_concert.domain.token;
 
 import com.hhplus.reservation_concert.domain.user.User;
-import com.hhplus.reservation_concert.global.error.ErrorCode;
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
+import com.hhplus.reservation_concert.global.exception.CustomException;
 import com.hhplus.reservation_concert.infrastructure.token.TokenRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

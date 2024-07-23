@@ -4,7 +4,7 @@ import com.hhplus.reservation_concert.domain.concert.Concert;
 import com.hhplus.reservation_concert.domain.token.Token;
 import com.hhplus.reservation_concert.domain.token.TokenStatus;
 import com.hhplus.reservation_concert.domain.user.User;
-import com.hhplus.reservation_concert.global.error.ErrorCode;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
 import com.hhplus.reservation_concert.infrastructure.concert.ConcertRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.token.TokenRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.user.UserRepositoryImpl;

@@ -1,8 +1,8 @@
 package com.hhplus.reservation_concert.domain.user;
 
 import com.hhplus.reservation_concert.domain.user.point.PointHistory;
-import com.hhplus.reservation_concert.global.error.ErrorCode;
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
+import com.hhplus.reservation_concert.global.exception.CustomException;
 import com.hhplus.reservation_concert.infrastructure.user.PointHistoryRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.user.UserRepositoryImpl;
 import org.junit.jupiter.api.Test;

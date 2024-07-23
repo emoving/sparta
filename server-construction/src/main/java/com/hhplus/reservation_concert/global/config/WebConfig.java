@@ -1,8 +1,7 @@
 package com.hhplus.reservation_concert.global.config;
 
 import com.hhplus.reservation_concert.application.TokenFacade;
-import com.hhplus.reservation_concert.global.interceptor.LogInterceptor;
-import com.hhplus.reservation_concert.global.interceptor.TokenInterceptor;
+import com.hhplus.reservation_concert.interfaces.interceptor.LogInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,10 +19,10 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1)
                 .addPathPatterns("/**");
 
-        registry.addInterceptor(new TokenInterceptor(tokenFacade))
-                .order(2)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/", "/tokens/**",
-                        "/swagger-resources/**", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**");
+//        registry.addInterceptor(new TokenInterceptor(tokenFacade))
+//                .order(2)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/", "/tokens/**",
+//                        "/swagger-resources/**", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**");
     }
 }

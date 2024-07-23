@@ -23,6 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new TokenInterceptor(tokenFacade))
                 .order(2)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/", "/tokens/**");
+                .excludePathPatterns("/", "/tokens/**",
+                        "/swagger-resources/**", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**");
     }
 }

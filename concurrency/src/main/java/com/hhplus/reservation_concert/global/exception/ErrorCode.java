@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.global.error;
+package com.hhplus.reservation_concert.global.exception;
 
 
 import lombok.Getter;
@@ -15,6 +15,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "해당 유저가 없습니다."),
     POINT_CHARGE_BELOW_ZERO(409, "충전 금액은 0원보다 커야 합니다."),
     POINT_USE_LACK(409, "포인트가 부족합니다."),
+    POINT_REQUEST_EXIST(409, "이미 진행중인 요청입니다."),
 
     RESERVATION_EXPIRED(404, "만료된 예약입니다."),
 

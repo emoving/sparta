@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.presentation.reservation;
+package com.hhplus.reservation_concert.interfaces.presentation.reservation;
 
 import lombok.Builder;
 import lombok.Getter;

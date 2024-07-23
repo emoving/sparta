@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.presentation.concert;
+package com.hhplus.reservation_concert.interfaces.presentation.concert;
 
 import com.hhplus.reservation_concert.domain.concert.Concert;
 import com.hhplus.reservation_concert.domain.concert.performance.Performance;

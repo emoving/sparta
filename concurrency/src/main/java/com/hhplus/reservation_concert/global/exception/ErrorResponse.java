@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.global.error;
+package com.hhplus.reservation_concert.global.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

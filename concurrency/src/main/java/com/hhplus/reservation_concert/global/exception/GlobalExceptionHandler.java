@@ -1,6 +1,5 @@
-package com.hhplus.reservation_concert.global.error;
+package com.hhplus.reservation_concert.global.exception;
 
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
-public class ApiControllerAdvice {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = CustomException.class)
     public ResponseEntity<ErrorResponse> handleBaseException(CustomException e) {

@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.global.interceptor;
+package com.hhplus.reservation_concert.interfaces.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

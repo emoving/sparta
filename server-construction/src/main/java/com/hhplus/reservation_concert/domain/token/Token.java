@@ -18,8 +18,7 @@ import java.util.UUID;
 @Table(indexes = @Index(name = "token_status", columnList = "status"))
 public class Token {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)

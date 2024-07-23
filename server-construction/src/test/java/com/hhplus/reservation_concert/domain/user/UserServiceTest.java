@@ -41,7 +41,11 @@ class UserServiceTest {
 
         assertThatThrownBy(() -> userService.chargePoint(user, -1000))
                 .isInstanceOf(CustomException.class)
+<<<<<<< Updated upstream
                 .hasMessage(ErrorCode.POINT_CHARGE_BELOW_ZERO.getMessage());
+=======
+                .hasMessage(ErrorCode.POINT_BELOW_ZERO.getMessage());
+>>>>>>> Stashed changes
 
         assertThat(user.getPoint()).isEqualTo(1000);
     }
@@ -52,7 +56,11 @@ class UserServiceTest {
 
         assertThatThrownBy(() -> userService.usePoint(user, 3000))
                 .isInstanceOf(CustomException.class)
+<<<<<<< Updated upstream
                 .hasMessage(ErrorCode.POINT_USE_LACK.getMessage());
+=======
+                .hasMessage(ErrorCode.POINT_NOT_ENOUGH.getMessage());
+>>>>>>> Stashed changes
 
         assertThat(user.getPoint()).isEqualTo(1000);
     }

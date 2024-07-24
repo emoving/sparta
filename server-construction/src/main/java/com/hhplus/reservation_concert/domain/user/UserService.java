@@ -31,15 +31,4 @@ public class UserService {
         PointHistory pointHistory = user.use(point);
         pointHistoryRepository.save(pointHistory);
     }
-
-    public void usePointWithOptimisticLock(Long id, Integer point) {
-        User user = getUser(id);
-
-        try {
-            PointHistory pointHistory = user.use(point);
-            pointHistoryRepository.save(pointHistory);
-        } catch (OptimisticLockingFailureException e) {
-            throw new CustomException(ErrorCode.POINT_REQUEST_EXIST, e);
-        }
-    }
 }

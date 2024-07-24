@@ -2,9 +2,12 @@ package com.hhplus.reservation_concert.domain.reservation;
 
 import com.hhplus.reservation_concert.domain.concert.seat.Seat;
 import com.hhplus.reservation_concert.domain.reservation.payment.Payment;
+import com.hhplus.reservation_concert.global.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
 import com.hhplus.reservation_concert.infrastructure.reservation.PaymentRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.reservation.ReservationRepositoryImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +34,16 @@ public class ReservationService {
 
     public Reservation reserveSeat(Long userId, Seat seat) {
         seat.reserve();
+
+        return reservationRepository.save(Reservation.from(userId, seat));
+    }
+
+    public Reservation reserveSeatWithOptimisticLock(Long userId, Seat seat) {
+        try {
+            seat.reserve();
+        } catch (OptimisticLockingFailureException e) {
+            throw new CustomException(ErrorCode.SEAT_RESERVED, e);
+        }
 
         return reservationRepository.save(Reservation.from(userId, seat));
     }

@@ -22,13 +22,13 @@ public class ReservationFacade {
     private final ConcertService concertService;
     private final UserService userService;
 
+    @Transactional
     public Reservation reserveSeat(Long userId, Long seatId) {
         Seat seat = concertService.getSeat(seatId);
 
         return reservationService.reserveSeat(userId, seat);
     }
 
-    @Transactional
     public Payment pay(Token token, Long reservationId) {
         User user = userService.getUser(token.getUserId());
         Reservation reservation = reservationService.getReservation(reservationId);

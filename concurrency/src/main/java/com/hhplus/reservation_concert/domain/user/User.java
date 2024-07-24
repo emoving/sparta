@@ -25,9 +25,6 @@ public class User {
 
     private Integer point;
 
-    @Version
-    private Long version;
-
     public PointHistory charge(Integer point) {
         if (point <= 0) {
             throw new CustomException(ErrorCode.POINT_CHARGE_BELOW_ZERO);

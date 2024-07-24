@@ -1,8 +1,8 @@
 package com.hhplus.reservation_concert.domain.concert.seat;
 
 import com.hhplus.reservation_concert.domain.concert.performance.Performance;
-import com.hhplus.reservation_concert.global.error.ErrorCode;
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
+import com.hhplus.reservation_concert.global.exception.CustomException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,9 +34,11 @@ public class Seat {
         this.status = SeatStatus.empty;
     }
 
-    public void validateEmpty() {
+    public void reserve() {
         if (this.status == SeatStatus.reserved) {
             throw new CustomException(ErrorCode.SEAT_RESERVED);
         }
+
+        this.status = SeatStatus.reserved;
     }
 }

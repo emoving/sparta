@@ -1,11 +1,11 @@
-package com.hhplus.reservation_concert.presentation.user;
+package com.hhplus.reservation_concert.interfaces.presentation.user;
 
 import com.hhplus.reservation_concert.application.UserFacade;
 import com.hhplus.reservation_concert.domain.token.Token;
 import com.hhplus.reservation_concert.domain.user.point.PointHistory;
-import com.hhplus.reservation_concert.presentation.user.UserDto.PointHistoryResponse;
-import com.hhplus.reservation_concert.presentation.user.UserDto.PointRequest;
-import com.hhplus.reservation_concert.presentation.user.UserDto.PointResponse;
+import com.hhplus.reservation_concert.interfaces.presentation.user.UserDto.PointHistoryResponse;
+import com.hhplus.reservation_concert.interfaces.presentation.user.UserDto.PointRequest;
+import com.hhplus.reservation_concert.interfaces.presentation.user.UserDto.PointResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;

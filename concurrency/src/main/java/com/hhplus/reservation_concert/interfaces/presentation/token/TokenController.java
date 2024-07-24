@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.presentation.token;
+package com.hhplus.reservation_concert.interfaces.presentation.token;
 
 import com.hhplus.reservation_concert.application.TokenFacade;
 import com.hhplus.reservation_concert.domain.token.Token;

@@ -2,22 +2,23 @@ package com.hhplus.reservation_concert.domain.user;
 
 import com.hhplus.reservation_concert.domain.user.point.PointHistory;
 import com.hhplus.reservation_concert.domain.user.point.TransactionType;
-import com.hhplus.reservation_concert.global.error.ErrorCode;
-import com.hhplus.reservation_concert.global.error.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
 @Table(name = "users")
+@Getter
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

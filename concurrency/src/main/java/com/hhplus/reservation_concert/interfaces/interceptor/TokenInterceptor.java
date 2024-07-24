@@ -1,4 +1,4 @@
-package com.hhplus.reservation_concert.global.interceptor;
+package com.hhplus.reservation_concert.interfaces.interceptor;
 
 import com.hhplus.reservation_concert.application.TokenFacade;
 import com.hhplus.reservation_concert.domain.token.Token;

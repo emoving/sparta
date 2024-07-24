@@ -34,9 +34,11 @@ public class Seat {
         this.status = SeatStatus.empty;
     }
 
-    public void validateEmpty() {
+    public void reserve() {
         if (this.status == SeatStatus.reserved) {
             throw new CustomException(ErrorCode.SEAT_RESERVED);
         }
+
+        this.status = SeatStatus.reserved;
     }
 }

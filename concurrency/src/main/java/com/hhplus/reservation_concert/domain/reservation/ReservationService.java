@@ -6,14 +6,17 @@ import com.hhplus.reservation_concert.infrastructure.reservation.PaymentReposito
 import com.hhplus.reservation_concert.infrastructure.reservation.ReservationRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReservationService {
 
     private final ReservationRepositoryImpl reservationRepository;
     private final PaymentRepositoryImpl paymentRepository;
 
+    @Transactional(readOnly = true)
     public Reservation getReservation(Long id) {
         return reservationRepository.findById(id).orElseThrow();
     }
@@ -26,16 +29,15 @@ public class ReservationService {
         return paymentRepository.save(payment);
     }
 
-    public Reservation reserve(Long userId, Seat seat) {
-        Reservation reservation = Reservation.from(userId, seat);
+    public Reservation reserveSeat(Long userId, Seat seat) {
+        seat.reserve();
 
-        return reservationRepository.save(reservation);
+        return reservationRepository.save(Reservation.from(userId, seat));
     }
 
     public Payment pay(Reservation reservation) {
-        Payment payment = Payment.from(reservation);
         reservation.setStatusPayed();
 
-        return paymentRepository.save(payment);
+        return paymentRepository.save(Payment.from(reservation));
     }
 }

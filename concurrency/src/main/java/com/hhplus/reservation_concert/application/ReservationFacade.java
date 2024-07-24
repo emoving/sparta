@@ -24,9 +24,8 @@ public class ReservationFacade {
 
     public Reservation reserveSeat(Long userId, Long seatId) {
         Seat seat = concertService.getSeat(seatId);
-        seat.validateEmpty();
 
-        return reservationService.reserve(userId, seat);
+        return reservationService.reserveSeat(userId, seat);
     }
 
     @Transactional

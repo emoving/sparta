@@ -22,10 +22,11 @@ public class ReservationFacade {
     private final ConcertService concertService;
     private final UserService userService;
 
+    @Transactional
     public Reservation reserveSeat(Long userId, Long seatId) {
         Seat seat = concertService.getSeat(seatId);
 
-        return reservationService.reserveSeat(userId, seat);
+        return reservationService.reserveSeatWithDistributedLock(userId, seat);
     }
 
     @Transactional

@@ -45,7 +45,7 @@ public class ConcertService {
     }
 
     public Seat getSeat(Long id) {
-        return seatRepository.findByIdWithPessimisticLock(id).orElseThrow(() -> new CustomException(ErrorCode.SEAT_NOT_FOUND));
+        return seatRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.SEAT_NOT_FOUND));
     }
 
     public List<Seat> getSeats(Performance performance) {

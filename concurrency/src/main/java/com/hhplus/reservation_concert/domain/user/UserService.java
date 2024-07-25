@@ -1,8 +1,8 @@
 package com.hhplus.reservation_concert.domain.user;
 
 import com.hhplus.reservation_concert.domain.user.point.PointHistory;
-import com.hhplus.reservation_concert.global.exception.ErrorCode;
 import com.hhplus.reservation_concert.global.exception.CustomException;
+import com.hhplus.reservation_concert.global.exception.ErrorCode;
 import com.hhplus.reservation_concert.infrastructure.user.PointHistoryRepositoryImpl;
 import com.hhplus.reservation_concert.infrastructure.user.UserRepositoryImpl;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,12 @@ public class UserService {
     }
 
     public void usePoint(User user, Integer point) {
+        PointHistory pointHistory = user.use(point);
+        pointHistoryRepository.save(pointHistory);
+    }
+
+    public void usePointWithPessimisticLock(Long id, Integer point) {
+        User user = userRepository.findByIdWithPessimisticLock(id).orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         PointHistory pointHistory = user.use(point);
         pointHistoryRepository.save(pointHistory);
     }

@@ -6,7 +6,6 @@ import com.hhplus.reservation_concert.domain.concert.seat.SeatStatus;
 import com.hhplus.reservation_concert.infrastructure.concert.SeatRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -35,7 +34,7 @@ public class ReservationOptimisticLockTest {
     @Test
     void reserveSeatWithOptimisticLock() throws Exception {
         Long seatId = 1L;
-        int numberOfThreads = 100;
+        int numberOfThreads = 1000;
         long startTime = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
@@ -43,7 +42,7 @@ public class ReservationOptimisticLockTest {
         for (int i = 0; i < numberOfThreads; i++) {
             executorService.execute(() -> {
                 try {
-                    reservationFacade.reserveSeat(Mockito.any(), seatId);
+                    reservationFacade.reserveSeat(1L, seatId);
                 } catch (Exception e) {
                     synchronized (exceptions) {
                         exceptions.add(e);

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
+@Transactional
 public class ReservationFacade {
 
     private final TokenService tokenService;
@@ -28,7 +29,6 @@ public class ReservationFacade {
         return reservationService.reserveSeat(userId, seat);
     }
 
-    @Transactional
     public Payment pay(Token token, Long reservationId) {
         User user = userService.getUser(token.getUserId());
         Reservation reservation = reservationService.getReservation(reservationId);

@@ -32,10 +32,10 @@ public class UserPessimisticLockTest {
     }
 
     @Test
-    void reserveSeatWithPessimisticLock() throws Exception {
+    void usePointWithPessimisticLock() throws Exception {
         Long userId = 1L;
         int usePoint = 800;
-        int numberOfThreads = 100;
+        int numberOfThreads = 1000;
         long startTime = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);

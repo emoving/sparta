@@ -39,7 +39,7 @@ public class ReservationPessimisticLockTest {
     @Test
     void reserveSeatWithPessimisticLock() throws Exception {
         Long seatId = 1L;
-        int numberOfThreads = 100;
+        int numberOfThreads = 1000;
         long startTime = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
@@ -49,7 +49,9 @@ public class ReservationPessimisticLockTest {
                 try {
                     reservationFacade.reserveSeat(Mockito.any(), seatId);
                 } catch (Exception e) {
-                    exceptions.add(e);
+                    synchronized (exceptions) {
+                        exceptions.add(e);
+                    }
                 }
             });
         }

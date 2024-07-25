@@ -5,6 +5,7 @@ import com.hhplus.reservation_concert.global.exception.ErrorCode;
 import com.hhplus.reservation_concert.global.exception.CustomException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(indexes = @Index(name = "idx_seat_performance", columnList = "performance_id"))
+@Builder
 public class Seat {
 
     @Id

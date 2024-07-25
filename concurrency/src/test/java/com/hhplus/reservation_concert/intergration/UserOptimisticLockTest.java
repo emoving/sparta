@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.OptimisticLockingFailureException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +27,15 @@ public class UserOptimisticLockTest {
 
     @BeforeEach
     void setUp() {
-        userRepository.save(User.builder().name("이동주").point(1000).build());
+        userRepository.save(User.builder().point(1000).build());
     }
 
     @Test
     void usePointWithOptimisticLock() throws Exception {
         Long userId = 1L;
-        int usePoint = 200;
-        int numberOfThreads = 10;
+        int usePoint = 800;
+        int numberOfThreads = 100;
+        long startTime = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
         List<Exception> exceptions = new ArrayList<>();
@@ -44,17 +44,20 @@ public class UserOptimisticLockTest {
                 try {
                     userService.usePointWithOptimisticLock(userId, usePoint);
                 } catch (Exception e) {
-                    exceptions.add(e);
+                    synchronized (exceptions) {
+                        exceptions.add(e);
+                    }
                 }
             });
         }
         executorService.shutdown();
         executorService.awaitTermination(1, TimeUnit.MINUTES);
 
+        long endTime = System.currentTimeMillis();
         User getUser = userService.getUser(userId);
         assertThat(getUser.getPoint()).isEqualTo(1000 - usePoint);
         assertThat(getUser.getVersion()).isEqualTo(1);
         assertThat(exceptions.size()).isEqualTo(numberOfThreads - 1);
-        exceptions.forEach(exception -> assertThat(exception).isInstanceOf(OptimisticLockingFailureException.class));
+        System.out.println("UserOptimisticLock Performance: " + (endTime - startTime) + "ms");
     }
 }

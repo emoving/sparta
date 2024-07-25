@@ -26,7 +26,7 @@ public class ReservationFacade {
     public Reservation reserveSeat(Long userId, Long seatId) {
         Seat seat = concertService.getSeat(seatId);
 
-        return reservationService.reserveSeat(userId, seat);
+        return reservationService.reserveSeatWithOptimisticLock(userId, seat);
     }
 
     public Payment pay(Token token, Long reservationId) {

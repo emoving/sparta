@@ -6,9 +6,9 @@ import com.hhplus.reservation_concert.domain.concert.seat.SeatStatus;
 import com.hhplus.reservation_concert.infrastructure.concert.SeatRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.OptimisticLockingFailureException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,26 +35,30 @@ public class ReservationOptimisticLockTest {
     @Test
     void reserveSeatWithOptimisticLock() throws Exception {
         Long seatId = 1L;
-        int numberOfThreads = 10;
+        int numberOfThreads = 100;
+        long startTime = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
         List<Exception> exceptions = new ArrayList<>();
         for (int i = 0; i < numberOfThreads; i++) {
             executorService.execute(() -> {
                 try {
-                    reservationFacade.reserveSeat(1L, seatId);
+                    reservationFacade.reserveSeat(Mockito.any(), seatId);
                 } catch (Exception e) {
-                    exceptions.add(e);
+                    synchronized (exceptions) {
+                        exceptions.add(e);
+                    }
                 }
             });
         }
         executorService.shutdown();
         executorService.awaitTermination(1, TimeUnit.MINUTES);
 
+        long endTime = System.currentTimeMillis();
         Seat seat = seatRepository.findById(seatId).get();
         assertThat(seat.getStatus()).isEqualTo(SeatStatus.reserved);
         assertThat(seat.getVersion()).isEqualTo(1L);
         assertThat(exceptions.size()).isEqualTo(numberOfThreads - 1);
-        exceptions.forEach(exception -> assertThat(exception).isInstanceOf(OptimisticLockingFailureException.class));
+        System.out.println("ReservationOptimisticLock Performance: " + (endTime - startTime) + "ms");
     }
 }

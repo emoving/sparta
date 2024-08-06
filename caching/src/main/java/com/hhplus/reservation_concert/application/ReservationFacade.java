@@ -11,7 +11,6 @@ import com.hhplus.reservation_concert.domain.user.User;
 import com.hhplus.reservation_concert.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
@@ -22,7 +21,6 @@ public class ReservationFacade {
     private final ReservationService reservationService;
     private final ConcertService concertService;
     private final UserService userService;
-    private PlatformTransactionManager transactionManager;
 
     public Reservation reserveSeat(Long userId, Long seatId) {
         Seat seat = concertService.getSeat(seatId);
